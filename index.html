@@ -17,7 +17,7 @@ body {
 
 /* SIDEBAR */
 .sidebar {
-  width: 240px;
+  width: 260px;
   background: #11182b;
   padding: 20px;
   overflow-y: auto;
@@ -26,7 +26,7 @@ body {
 .logo {
   font-size: 22px;
   color: #1db954;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-weight: bold;
 }
 
@@ -51,37 +51,33 @@ body {
   justify-content: center;
 }
 
-/* PLAYER (BIG VERSION) */
+/* PLAYER */
 .player {
-  width: 80%;
+  width: 85%;
   max-width: 900px;
   background: #141c33;
   padding: 20px;
   border-radius: 15px;
   text-align: center;
-  box-shadow: 0 0 40px rgba(29,185,84,0.25);
+  box-shadow: 0 0 30px rgba(29,185,84,0.15);
 }
 
 .title {
   margin-bottom: 15px;
   color: #1db954;
-  font-size: 20px;
+  font-size: 18px;
 }
 
-/* 🔥 BIG VIDEO (2X) */
+/* BIG VIDEO */
 iframe {
   width: 100%;
-  height: 560px; /* 👈 2x بزرگ‌تر */
+  height: 560px;
   border-radius: 12px;
   border: none;
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
-  .player {
-    width: 95%;
-  }
-
   iframe {
     height: 320px;
   }
@@ -107,11 +103,14 @@ iframe {
 const tracks = [
   {name:"Drake - God's Plan", id:"xpVfcZ0ZcFM"},
   {name:"Drake - Hotline Bling", id:"uxpDa-c-4Mc"},
-  {name:"Drake - One Dance", id:"qL7zrWcv6XY"},
   {name:"Drake - In My Feelings", id:"DRS_PpOrUZ4"},
   {name:"Drake - Nonstop", id:"6ONRf7h3Mdk"},
+  {name:"Drake - Laugh Now Cry Later", id:"JFm7YDVlqnI"},
+  {name:"Drake - Passionfruit", id:"EgfsXTOn_pI"},
+  {name:"Drake - Nice For What", id:"U9BwWKXjVaI"},
+  {name:"Drake - Controlla", id:"1Lz8LZ2g1v0"},
   {name:"Drake - Started From The Bottom", id:"RVwV7i6Z7Yo"},
-  {name:"Drake - Passionfruit", id:"EgfsXTOn_pI"}
+  {name:"Drake - Hold On, We're Going Home", id:"7e9pQ3Q1Xn4"}
 ];
 
 let list = document.getElementById("list");
@@ -130,7 +129,7 @@ tracks.forEach((t, i) => {
 /* play */
 function play(i){
   title.innerText = tracks[i].name;
-  player.src = "https://www.youtube.com/embed/" + tracks[i].id + "?autoplay=1";
+  player.src = "https://www.youtube.com/embed/" + tracks[i].id + "?autoplay=1&rel=0";
 }
 </script>
 
