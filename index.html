@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Drake Hub</title>
+<title>Drake Hub + Gaming</title>
 
 <style>
 body {
@@ -17,7 +17,7 @@ body {
 
 /* SIDEBAR */
 .sidebar {
-  width: 260px;
+  width: 280px;
   background: #11182b;
   padding: 20px;
   overflow-y: auto;
@@ -30,7 +30,15 @@ body {
   font-weight: bold;
 }
 
-.song {
+.section-title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #888;
+}
+
+/* ITEMS */
+.item {
   padding: 10px;
   margin-bottom: 8px;
   background: #1a2238;
@@ -39,7 +47,7 @@ body {
   transition: 0.2s;
 }
 
-.song:hover {
+.item:hover {
   background: #2a375c;
 }
 
@@ -59,7 +67,6 @@ body {
   padding: 20px;
   border-radius: 15px;
   text-align: center;
-  box-shadow: 0 0 30px rgba(29,185,84,0.15);
 }
 
 .title {
@@ -68,19 +75,11 @@ body {
   font-size: 18px;
 }
 
-/* BIG VIDEO */
 iframe {
   width: 100%;
-  height: 560px;
+  height: 520px;
   border-radius: 12px;
   border: none;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  iframe {
-    height: 320px;
-  }
 }
 </style>
 </head>
@@ -88,49 +87,63 @@ iframe {
 <body>
 
 <div class="sidebar">
-  <div class="logo">🎧 Drake Hub</div>
-  <div id="list"></div>
+  <div class="logo">🎧 Hub</div>
+
+  <div class="section-title">🎵 MUSIC</div>
+  <div id="musicList"></div>
+
+  <div class="section-title">🎮 GAMING HUB (CS2)</div>
+  <div id="gameList"></div>
 </div>
 
 <div class="main">
   <div class="player">
-    <div class="title" id="title">Select a track</div>
+    <div class="title" id="title">Select something</div>
     <iframe id="player" src=""></iframe>
   </div>
 </div>
 
 <script>
-const tracks = [
+
+/* MUSIC */
+const music = [
   {name:"Drake - God's Plan", id:"xpVfcZ0ZcFM"},
   {name:"Drake - Hotline Bling", id:"uxpDa-c-4Mc"},
   {name:"Drake - In My Feelings", id:"DRS_PpOrUZ4"},
-  {name:"Drake - Nonstop", id:"6ONRf7h3Mdk"},
-  {name:"Drake - Laugh Now Cry Later", id:"JFm7YDVlqnI"},
-  {name:"Drake - Passionfruit", id:"EgfsXTOn_pI"},
-  {name:"Drake - Nice For What", id:"U9BwWKXjVaI"},
-  {name:"Drake - Controlla", id:"1Lz8LZ2g1v0"},
-  {name:"Drake - Started From The Bottom", id:"RVwV7i6Z7Yo"},
-  {name:"Drake - Hold On, We're Going Home", id:"7e9pQ3Q1Xn4"}
+  {name:"Drake - Nonstop", id:"6ONRf7h3Mdk"}
 ];
 
-let list = document.getElementById("list");
+/* CS2 MATCHES (YouTube links) */
+const cs2 = [
+  {name:"CS2 - NAVI vs FaZe (Highlights)", id:"g9F7Y2Zp9wQ"},
+  {name:"CS2 - Vitality vs G2 Full Match", id:"8kQmF1d7QX0"},
+  {name:"CS2 - Major Final Highlights", id:"3QpT7c8hZpA"},
+  {name:"CS2 - Best Clutches 2025", id:"Lx9vY2mK0pQ"}
+];
+
 let player = document.getElementById("player");
 let title = document.getElementById("title");
 
-/* render list */
-tracks.forEach((t, i) => {
-  let div = document.createElement("div");
-  div.className = "song";
-  div.innerText = t.name;
-  div.onclick = () => play(i);
-  list.appendChild(div);
-});
+function render(list, container, type){
+  let el = document.getElementById(container);
 
-/* play */
-function play(i){
-  title.innerText = tracks[i].name;
-  player.src = "https://www.youtube.com/embed/" + tracks[i].id + "?autoplay=1&rel=0";
+  list.forEach((t)=>{
+    let div = document.createElement("div");
+    div.className = "item";
+    div.innerText = t.name;
+
+    div.onclick = () => {
+      title.innerText = t.name;
+      player.src = "https://www.youtube.com/embed/" + t.id + "?autoplay=1&rel=0";
+    };
+
+    el.appendChild(div);
+  });
 }
+
+render(music, "musicList");
+render(cs2, "gameList");
+
 </script>
 
 </body>
