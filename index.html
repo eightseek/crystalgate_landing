@@ -3,111 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NeoMusic Player</title>
+<title>Drake Music Hub</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial;
-  background: #0b0f1a;
+  background: #0b0f18;
   color: white;
-  text-align: center;
+  display: flex;
+  height: 100vh;
 }
 
-header {
-  padding: 30px;
-  font-size: 28px;
-  color: #00ffd5;
-}
-
-.player {
-  margin: 40px auto;
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background: #11182b;
   padding: 20px;
-  width: 320px;
-  background: #141827;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,255,213,0.2);
 }
 
-button {
-  padding: 10px 15px;
-  margin: 5px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background: #00ffd5;
-  color: black;
+.logo {
+  font-size: 22px;
+  color: #1db954;
+  margin-bottom: 20px;
   font-weight: bold;
 }
 
-.tracklist {
-  margin-top: 30px;
-}
-
-.track {
+.song {
   padding: 10px;
-  margin: 5px;
-  background: #1c2238;
+  margin-bottom: 8px;
+  background: #1a2238;
   border-radius: 8px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-.track:hover {
-  background: #2a3352;
+.song:hover {
+  background: #2a375c;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* PLAYER */
+.player {
+  width: 500px;
+  background: #141c33;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(29,185,84,0.2);
+}
+
+iframe {
+  width: 100%;
+  height: 280px;
+  border-radius: 10px;
+  border: none;
+}
+
+/* TITLE */
+.title {
+  margin-bottom: 10px;
+  color: #1db954;
+  font-size: 18px;
 }
 </style>
 </head>
 
 <body>
 
-<header>NeoMusic Player 🎧</header>
-
-<div class="player">
-
-  <h3 id="title">No Track</h3>
-
-  <audio id="audio" controls style="width:100%; margin-top:10px;">
-    <source id="source" src="" type="audio/mp3">
-  </audio>
-
-  <div>
-    <button onclick="playAudio()">Play</button>
-    <button onclick="pauseAudio()">Pause</button>
-  </div>
+<div class="sidebar">
+  <div class="logo">🎧 Drake Hub</div>
+  <div id="list"></div>
 </div>
 
-<div class="tracklist">
-  <div class="track" onclick="loadTrack('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3','Lo-Fi Chill')">
-    🎵 Lo-Fi Chill
-  </div>
+<div class="main">
+  <div class="player">
+    <div class="title" id="title">Select a track</div>
 
-  <div class="track" onclick="loadTrack('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3','Deep Focus')">
-    🎵 Deep Focus
-  </div>
-
-  <div class="track" onclick="loadTrack('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3','Night Vibes')">
-    🎵 Night Vibes
+    <iframe id="player" src=""></iframe>
   </div>
 </div>
 
 <script>
-let audio = document.getElementById("audio");
-let source = document.getElementById("source");
+const tracks = [
+  {name:"Drake - God's Plan", id:"xpVfcZ0ZcFM"},
+  {name:"Drake - Hotline Bling", id:"uxpDa-c-4Mc"},
+  {name:"Drake - One Dance", id:"qL7zrWcv6XY"},
+  {name:"Drake - In My Feelings", id:"DRS_PpOrUZ4"},
+  {name:"Drake - Nonstop", id:"6ONRf7h3Mdk"},
+  {name:"Drake - Started From The Bottom", id:"RVwV7i6Z7Yo"},
+  {name:"Drake - Laugh Now Cry Later", id:"JFm7YDVlqnI"},
+  {name:"Drake - Passionfruit", id:"EgfsXTOn_pI"}
+];
+
+let list = document.getElementById("list");
+let player = document.getElementById("player");
 let title = document.getElementById("title");
 
-function loadTrack(url, name) {
-  source.src = url;
-  audio.load();
-  audio.play();
-  title.innerText = name;
+/* render list */
+function render(){
+  tracks.forEach((t,i)=>{
+    let div = document.createElement("div");
+    div.className = "song";
+    div.innerText = t.name;
+    div.onclick = ()=>play(i);
+    list.appendChild(div);
+  });
 }
+render();
 
-function playAudio() {
-  audio.play();
-}
-
-function pauseAudio() {
-  audio.pause();
+/* play song */
+function play(i){
+  title.innerText = tracks[i].name;
+  player.src = "https://www.youtube.com/embed/" + tracks[i].id + "?autoplay=1";
 }
 </script>
 
