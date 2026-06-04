@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Drake Music Hub</title>
+<title>Drake Hub</title>
 
 <style>
 body {
@@ -20,6 +20,7 @@ body {
   width: 240px;
   background: #11182b;
   padding: 20px;
+  overflow-y: auto;
 }
 
 .logo {
@@ -46,33 +47,44 @@ body {
 .main {
   flex: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* PLAYER */
+/* PLAYER (BIG VERSION) */
 .player {
-  width: 500px;
+  width: 80%;
+  max-width: 900px;
   background: #141c33;
   padding: 20px;
   border-radius: 15px;
   text-align: center;
-  box-shadow: 0 0 30px rgba(29,185,84,0.2);
+  box-shadow: 0 0 40px rgba(29,185,84,0.25);
 }
 
+.title {
+  margin-bottom: 15px;
+  color: #1db954;
+  font-size: 20px;
+}
+
+/* 🔥 BIG VIDEO (2X) */
 iframe {
   width: 100%;
-  height: 280px;
-  border-radius: 10px;
+  height: 560px; /* 👈 2x بزرگ‌تر */
+  border-radius: 12px;
   border: none;
 }
 
-/* TITLE */
-.title {
-  margin-bottom: 10px;
-  color: #1db954;
-  font-size: 18px;
+/* MOBILE */
+@media (max-width: 768px) {
+  .player {
+    width: 95%;
+  }
+
+  iframe {
+    height: 320px;
+  }
 }
 </style>
 </head>
@@ -87,7 +99,6 @@ iframe {
 <div class="main">
   <div class="player">
     <div class="title" id="title">Select a track</div>
-
     <iframe id="player" src=""></iframe>
   </div>
 </div>
@@ -100,7 +111,6 @@ const tracks = [
   {name:"Drake - In My Feelings", id:"DRS_PpOrUZ4"},
   {name:"Drake - Nonstop", id:"6ONRf7h3Mdk"},
   {name:"Drake - Started From The Bottom", id:"RVwV7i6Z7Yo"},
-  {name:"Drake - Laugh Now Cry Later", id:"JFm7YDVlqnI"},
   {name:"Drake - Passionfruit", id:"EgfsXTOn_pI"}
 ];
 
@@ -109,18 +119,15 @@ let player = document.getElementById("player");
 let title = document.getElementById("title");
 
 /* render list */
-function render(){
-  tracks.forEach((t,i)=>{
-    let div = document.createElement("div");
-    div.className = "song";
-    div.innerText = t.name;
-    div.onclick = ()=>play(i);
-    list.appendChild(div);
-  });
-}
-render();
+tracks.forEach((t, i) => {
+  let div = document.createElement("div");
+  div.className = "song";
+  div.innerText = t.name;
+  div.onclick = () => play(i);
+  list.appendChild(div);
+});
 
-/* play song */
+/* play */
 function play(i){
   title.innerText = tracks[i].name;
   player.src = "https://www.youtube.com/embed/" + tracks[i].id + "?autoplay=1";
