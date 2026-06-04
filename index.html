@@ -3,156 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NeoSound - Audio Platform</title>
+<title>NeoMusic Player</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0a0a0f;
+  font-family: Arial;
+  background: #0b0f1a;
   color: white;
+  text-align: center;
 }
 
-/* TOP NAV */
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 40px;
-  background: #0f0f1a;
-  border-bottom: 1px solid #1f1f2e;
-}
-
-.logo {
-  font-weight: bold;
+header {
+  padding: 30px;
+  font-size: 28px;
   color: #00ffd5;
 }
 
-nav a {
-  color: #aaa;
-  margin-left: 20px;
-  text-decoration: none;
-}
-
-nav a:hover {
-  color: white;
-}
-
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 80px 20px;
-  background: radial-gradient(circle at top, #1a1a2e, #0a0a0f);
-}
-
-.hero h1 {
-  font-size: 50px;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  color: #aaa;
-  font-size: 18px;
-}
-
-/* SEARCH BAR */
-.search {
-  margin-top: 25px;
-}
-
-.search input {
-  width: 300px;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-}
-
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 50px;
-}
-
-.card {
-  background: #141427;
+.player {
+  margin: 40px auto;
   padding: 20px;
+  width: 320px;
+  background: #141827;
   border-radius: 12px;
-  transition: 0.3s;
-  border: 1px solid #222;
+  box-shadow: 0 0 20px rgba(0,255,213,0.2);
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  border-color: #00ffd5;
-}
-
-.play {
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
   background: #00ffd5;
   color: black;
-  border: none;
-  padding: 10px 15px;
-  margin-top: 10px;
+  font-weight: bold;
+}
+
+.tracklist {
+  margin-top: 30px;
+}
+
+.track {
+  padding: 10px;
+  margin: 5px;
+  background: #1c2238;
   border-radius: 8px;
   cursor: pointer;
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 30px;
-  color: #555;
-  border-top: 1px solid #1f1f2e;
+.track:hover {
+  background: #2a3352;
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div class="logo">NeoSound</div>
+<header>NeoMusic Player 🎧</header>
+
+<div class="player">
+
+  <h3 id="title">No Track</h3>
+
+  <audio id="audio" controls style="width:100%; margin-top:10px;">
+    <source id="source" src="" type="audio/mp3">
+  </audio>
+
   <div>
-    <a href="#">Home</a>
-    <a href="#">Trending</a>
-    <a href="#">Library</a>
-  </div>
-</nav>
-
-<div class="hero">
-  <h1>Stream Audio Instantly</h1>
-  <p>High quality sound • Fast streaming • No limits</p>
-
-  <div class="search">
-    <input type="text" placeholder="Search music, podcasts...">
+    <button onclick="playAudio()">Play</button>
+    <button onclick="pauseAudio()">Pause</button>
   </div>
 </div>
 
-<div class="grid">
-
-  <div class="card">
-    <h3>Lo-Fi Beats</h3>
-    <p>Relax & study music</p>
-    <button class="play">Play</button>
+<div class="tracklist">
+  <div class="track" onclick="loadTrack('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3','Lo-Fi Chill')">
+    🎵 Lo-Fi Chill
   </div>
 
-  <div class="card">
-    <h3>Tech Podcast</h3>
-    <p>Latest tech talks</p>
-    <button class="play">Play</button>
+  <div class="track" onclick="loadTrack('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3','Deep Focus')">
+    🎵 Deep Focus
   </div>
 
-  <div class="card">
-    <h3>Deep Focus</h3>
-    <p>Productivity sounds</p>
-    <button class="play">Play</button>
+  <div class="track" onclick="loadTrack('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3','Night Vibes')">
+    🎵 Night Vibes
   </div>
-
 </div>
 
-<footer>
-  © 2026 NeoSound - Streaming Platform UI
-</footer>
+<script>
+let audio = document.getElementById("audio");
+let source = document.getElementById("source");
+let title = document.getElementById("title");
+
+function loadTrack(url, name) {
+  source.src = url;
+  audio.load();
+  audio.play();
+  title.innerText = name;
+}
+
+function playAudio() {
+  audio.play();
+}
+
+function pauseAudio() {
+  audio.pause();
+}
+</script>
 
 </body>
 </html>
