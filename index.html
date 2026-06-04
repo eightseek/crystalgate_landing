@@ -3,13 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CrystalGate VPN</title>
+<title>NeoSound - Audio Platform</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0b0f1a;
+  background: #0a0a0f;
+  color: white;
+}
+
+/* TOP NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: #0f0f1a;
+  border-bottom: 1px solid #1f1f2e;
+}
+
+.logo {
+  font-weight: bold;
+  color: #00ffd5;
+}
+
+nav a {
+  color: #aaa;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+nav a:hover {
   color: white;
 }
 
@@ -17,11 +41,11 @@ body {
 .hero {
   text-align: center;
   padding: 80px 20px;
-  background: radial-gradient(circle at top, #1a2a6c, #0b0f1a);
+  background: radial-gradient(circle at top, #1a1a2e, #0a0a0f);
 }
 
 .hero h1 {
-  font-size: 48px;
+  font-size: 50px;
   margin-bottom: 10px;
 }
 
@@ -30,96 +54,104 @@ body {
   font-size: 18px;
 }
 
-/* BUTTON */
-.btn {
-  display: inline-block;
-  padding: 12px 25px;
-  margin-top: 20px;
-  background: #00ffd5;
-  color: black;
-  font-weight: bold;
+/* SEARCH BAR */
+.search {
+  margin-top: 25px;
+}
+
+.search input {
+  width: 300px;
+  padding: 12px;
   border-radius: 8px;
-  text-decoration: none;
+  border: none;
+  outline: none;
 }
 
-/* PLANS */
-.plans {
-  display: flex;
-  justify-content: center;
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  padding: 60px 20px;
-  flex-wrap: wrap;
+  padding: 50px;
 }
 
-.plan {
-  background: #111827;
-  padding: 25px;
+.card {
+  background: #141427;
+  padding: 20px;
   border-radius: 12px;
-  width: 250px;
-  text-align: center;
-  border: 1px solid #1f2937;
   transition: 0.3s;
+  border: 1px solid #222;
 }
 
-.plan:hover {
+.card:hover {
   transform: translateY(-5px);
   border-color: #00ffd5;
 }
 
-.price {
-  font-size: 28px;
-  margin: 10px 0;
-  color: #00ffd5;
+.play {
+  background: #00ffd5;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 /* FOOTER */
 footer {
   text-align: center;
   padding: 30px;
-  color: #666;
-  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #1f1f2e;
 }
 </style>
 </head>
 
 <body>
 
+<nav>
+  <div class="logo">NeoSound</div>
+  <div>
+    <a href="#">Home</a>
+    <a href="#">Trending</a>
+    <a href="#">Library</a>
+  </div>
+</nav>
+
 <div class="hero">
-  <h1>CrystalGate VPN</h1>
-  <p>Fast • Secure • No Logs • Worldwide Access</p>
-  <a class="btn" href="#plans">Get Started</a>
+  <h1>Stream Audio Instantly</h1>
+  <p>High quality sound • Fast streaming • No limits</p>
+
+  <div class="search">
+    <input type="text" placeholder="Search music, podcasts...">
+  </div>
 </div>
 
-<div id="plans" class="plans">
+<div class="grid">
 
-  <div class="plan">
-    <h3>Basic</h3>
-    <div class="price">$5</div>
-    <p>1 Month</p>
-    <p>Single Device</p>
-    <a class="btn" href="#">Buy</a>
+  <div class="card">
+    <h3>Lo-Fi Beats</h3>
+    <p>Relax & study music</p>
+    <button class="play">Play</button>
   </div>
 
-  <div class="plan">
-    <h3>Pro</h3>
-    <div class="price">$10</div>
-    <p>1 Month</p>
-    <p>3 Devices</p>
-    <a class="btn" href="#">Buy</a>
+  <div class="card">
+    <h3>Tech Podcast</h3>
+    <p>Latest tech talks</p>
+    <button class="play">Play</button>
   </div>
 
-  <div class="plan">
-    <h3>Elite</h3>
-    <div class="price">$20</div>
-    <p>3 Months</p>
-    <p>Unlimited Devices</p>
-    <a class="btn" href="#">Buy</a>
+  <div class="card">
+    <h3>Deep Focus</h3>
+    <p>Productivity sounds</p>
+    <button class="play">Play</button>
   </div>
 
 </div>
 
 <footer>
-  © 2026 CrystalGate VPN - All rights reserved
+  © 2026 NeoSound - Streaming Platform UI
 </footer>
 
 </body>
